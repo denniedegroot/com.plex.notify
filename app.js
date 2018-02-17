@@ -120,7 +120,7 @@ function loginPlex(credentials) {
 }
 
 function websocketListen() {
-    wsclient = new WebSocketClient()
+    wsclient = new WebSocketClient({tlsOptions: {rejectUnauthorized: false}});
     wsclient.on('connectFailed', function(error) {
         console.log('[WEBSOCKET] Error: ' + error.toString())
         setTimeout(websocketListen, reconnectInterval)
