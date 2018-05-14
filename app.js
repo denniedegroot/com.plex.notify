@@ -78,6 +78,7 @@ function getCredentials() {
         'plexPassword': Homey.manager('settings').get('password'),
         'plexIP': Homey.manager('settings').get('ip'),
         'plexPort': Homey.manager('settings').get('port'),
+        'plexHttps': Homey.manager('settings').get('use_https'),
     }
 }
 
@@ -93,11 +94,12 @@ function loginPlex(credentials) {
     plexClient = new PlexAPI({
         'hostname': credentials.plexIP,
         'port': credentials.plexPort,
+        'https': credentials.plexHttps,
         'authenticator': plexUser,
         'options': {
             'identifier': 'HomeyPlexNotify',
             'deviceName': 'Homey',
-            'version': '1.0.0',
+            'version': '1.0.4',
             'product': 'Plex Notify',
             'platform': 'Plex Home Theater',
             'device': 'Linux'
@@ -118,7 +120,7 @@ function loginPlex(credentials) {
 }
 
 function websocketListen() {
-    wsclient = new WebSocketClient()
+    wsclient = new WebSocketClient({tlsOptions: {rejectUnauthorized: false}});
     wsclient.on('connectFailed', function(error) {
         console.log('[WEBSOCKET] Error: ' + error.toString())
         setTimeout(websocketListen, reconnectInterval)
@@ -158,7 +160,8 @@ function websocketListen() {
             }
         })
     })
-    wsclient.connect('ws://' + plexClient.hostname + ':' + plexClient.port + '/:/websockets/notifications?X-Plex-Token=' + plexToken)
+    var ws_proto = plexClient.https ? 'wss' : 'ws';
+    wsclient.connect(ws_proto + '://' + plexClient.hostname + ':' + plexClient.port + '/:/websockets/notifications?X-Plex-Token=' + plexToken)
 }
 
 function closedSessionHandler(event) {

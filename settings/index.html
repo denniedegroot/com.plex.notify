@@ -26,10 +26,12 @@
         <div class='field row'>
             <label style='width: 260px'><span>IP Adress</span></label>
             <label style='width: 260px'><span>Port</span></label>
+            <label style='width: 260px'><span>Use https</span></label>
         </div>
         <div class='field row server'>
             <input class='server_ip' id='server_ip' type='text' value='' />
             <input class='server_port' id='server_port' type='text' value='' />
+            <input class='use_https' id='use_https' type='checkbox' />
         </div>
     </fieldset>
     <button id='save' class='left' onclick='saveSettings()'>Save settings</button>
@@ -56,6 +58,11 @@
                 console.log('Port: ', port)
                 document.getElementById('server_port').value = port
             })
+            Homey.get('use_https', function(err, use_https) {
+                if (err) return console.error('Could not get https', err)
+                console.log('HTTPS: ', use_https)
+                document.getElementById('use_https').checked = use_https
+            })
             Homey.ready()
         }
 
@@ -73,6 +80,9 @@
                 ),
                 new Promise((resolve, reject) =>
                     Homey.set('port', document.getElementById('server_port').value, (err) => err ? reject(err) : resolve())
+                ),
+                new Promise((resolve, reject) =>
+                    Homey.set('use_https', document.getElementById('use_https').checked, (err) => err ? reject(err) : resolve())
                 ),
             ]).then(() => {
                 console.log("Settings saved successfully, restarting application")

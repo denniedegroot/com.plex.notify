@@ -1,6 +1,6 @@
 {
     "id": "com.plex.notify",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "compatibility": "0.x || 1.x",
     "name": {
         "en": "Plex Notify"
