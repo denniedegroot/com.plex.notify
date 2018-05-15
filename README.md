@@ -33,7 +33,7 @@ The app uses tokens that support the following: player name, media title, plex u
 
 v1.0.4
 
-* Adding `https` setting, in case you have forced ssl/tls enabled on your plex.
+* Added `https` setting, allowing use of the forced SSL/TLS on Plex Server.
 
 v1.0.3
 
