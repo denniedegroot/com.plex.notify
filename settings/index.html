@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv='Cache-Control' content='no-store' />
-    <script type='text/javascript' src='/manager/webserver/assets/js/jquery.js'></script>
+    <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
 </head>
 
 <body>
@@ -34,40 +34,52 @@
             <input class='use_https' id='use_https' type='checkbox' />
         </div>
     </fieldset>
-    <button id='save' class='left' onclick='saveSettings()'>Save settings</button>
+    <button id="settings-save" data-i18n="settings.buttonSave"></button>
 
     <script type='text/javascript'>
-        function onHomeyReady() {
+        function onHomeyReady(Homey) {
+            console.log('onHomeyReady')
+
             Homey.get('username', function(err, username) {
                 if (err) return console.error('Could not get username', err)
                 console.log('Username: ', username)
                 document.getElementById('credentials_username').value = username
-            })
+            });
+
             Homey.get('password', function(err, password) {
                 if (err) return console.error('Could not get password', err)
                 console.log('Password: ', password)
                 document.getElementById('credentials_password').value = password
-            })
+            });
+
             Homey.get('ip', function(err, ip) {
                 if (err) return console.error('Could not get ip', err)
                 console.log('IP: ', ip)
                 document.getElementById('server_ip').value = ip
-            })
+            });
+
             Homey.get('port', function(err, port) {
                 if (err) return console.error('Could not get port', err)
                 console.log('Port: ', port)
                 document.getElementById('server_port').value = port
-            })
+            });
+
             Homey.get('use_https', function(err, use_https) {
                 if (err) return console.error('Could not get https', err)
                 console.log('HTTPS: ', use_https)
                 document.getElementById('use_https').checked = use_https
-            })
+            });
+
+            document.getElementById('settings-save').addEventListener('click', function(elem) {
+                saveSettings(Homey);
+            });
+
             Homey.ready()
         }
 
-        function saveSettings() {
+        function saveSettings(Homey) {
             console.log("Saving new settings...")
+
             Promise.all([
                 new Promise((resolve, reject) =>
                     Homey.set('username', document.getElementById('credentials_username').value, (err) => err ? reject(err) : resolve())
@@ -85,18 +97,17 @@
                     Homey.set('use_https', document.getElementById('use_https').checked, (err) => err ? reject(err) : resolve())
                 ),
             ]).then(() => {
-                console.log("Settings saved successfully, restarting application")
-                Homey.api('POST', '/restart/')
                 setSaveButton("green", "white", __("settings.saved"))
                 resetSaveButton()
             }).catch((err) => {
+                console.log(err)
                 console.log("Saving settings failed.")
             })
         }
 
         function setSaveButton(backgroundColor, color, innerHtml) {
-            document.getElementById('save').disabled = true
-            var btnSave = document.getElementById('save')
+            document.getElementById('settings-save').disabled = true
+            var btnSave = document.getElementById('settings-save')
             btnSave.style['background-color'] = backgroundColor
             btnSave.style['color'] = color
             btnSave.innerHTML = innerHtml
@@ -105,7 +116,7 @@
         function resetSaveButton() {
             setTimeout(function() {
                 setSaveButton('', 'black', __('settings.buttonSave'))
-                document.getElementById('save').disabled = false
+                document.getElementById('settings-save').disabled = false
             }, 3000)
         }
     </script>
