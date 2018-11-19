@@ -1,7 +1,8 @@
 {
     "id": "com.plex.notify",
     "version": "1.0.4",
-    "compatibility": "0.x || 1.x",
+    "compatibility": "1.x >=1.5.0",
+    "sdk": 2,
     "name": {
         "en": "Plex Notify"
     },
@@ -16,6 +17,13 @@
     "author": {
         "name": "Mark Swift",
         "email": "markaswift@gmail.com"
+    },
+    "contributors": {
+        "developers": [{
+            "name": "Dennie de Groot",
+            "email": "mail@denniedegroot.nl",
+            "website": "https://denniedegroot.nl"
+        }]
     },
     "flow": {
         "triggers": [{
