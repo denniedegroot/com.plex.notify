@@ -160,7 +160,7 @@ class App extends Homey.App {
 
         this.wsclient.on('connectFailed', (error) => {
             this.log('[WEBSOCKET] Error: ' + error.toString())
-            setTimeout(websocketListen, reconnectInterval)
+            setTimeout(this.websocketListen.bind(this), reconnectInterval)
         });
 
         this.wsclient.on('connect', (connection) => {
@@ -168,12 +168,12 @@ class App extends Homey.App {
 
             connection.on('error', (error) => {
                 this.error('[WEBSOCKET] Error: ' + error.toString())
-                setTimeout(websocketListen, reconnectInterval)
+                setTimeout(this.websocketListen.bind(this), reconnectInterval)
             });
 
             connection.on('close', () => {
                 this.log('[WEBSOCKET] Closed')
-                setTimeout(websocketListen, reconnectInterval)
+                setTimeout(this.websocketListen.bind(this), reconnectInterval)
             });
 
             connection.on('message', (message) => {

@@ -1,7 +1,7 @@
 {
     "id": "com.plex.notify",
     "version": "1.0.4",
-    "compatibility": "1.x >=1.5.0",
+    "compatibility": "",
     "sdk": 2,
     "name": {
         "en": "Plex Notify"
@@ -36,6 +36,7 @@
             },
             "tokens": [{
                 "name": "type",
+                "type": "string",
                 "title": {
                     "en": "Type"
                 },
@@ -44,6 +45,7 @@
                 }
             }, {
                 "name": "title",
+                "type": "string",
                 "title": {
                     "en": "Title"
                 },
@@ -52,6 +54,7 @@
                 }
             }, {
                 "name": "user",
+                "type": "string",
                 "title": {
                     "en": "User"
                 },
@@ -60,6 +63,7 @@
                 }
             }, {
                 "name": "player",
+                "type": "string",
                 "title": {
                     "en": "Player"
                 },
@@ -77,6 +81,7 @@
             },
             "tokens": [{
                 "name": "type",
+                "type": "string",
                 "title": {
                     "en": "Type"
                 },
@@ -85,6 +90,7 @@
                 }
             }, {
                 "name": "title",
+                "type": "string",
                 "title": {
                     "en": "Title"
                 },
@@ -93,6 +99,7 @@
                 }
             }, {
                 "name": "user",
+                "type": "string",
                 "title": {
                     "en": "User"
                 },
@@ -101,6 +108,7 @@
                 }
             }, {
                 "name": "player",
+                "type": "string",
                 "title": {
                     "en": "Player"
                 },
@@ -118,6 +126,7 @@
             },
             "tokens": [{
                 "name": "type",
+                "type": "string",
                 "title": {
                     "en": "Type"
                 },
@@ -126,6 +135,7 @@
                 }
             }, {
                 "name": "title",
+                "type": "string",
                 "title": {
                     "en": "Title"
                 },
@@ -134,6 +144,7 @@
                 }
             }, {
                 "name": "user",
+                "type": "string",
                 "title": {
                     "en": "User"
                 },
@@ -142,6 +153,7 @@
                 }
             }, {
                 "name": "player",
+                "type": "string",
                 "title": {
                     "en": "Player"
                 },
