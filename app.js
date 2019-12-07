@@ -228,6 +228,7 @@ class App extends Homey.App {
             this.log('[OPEN SESSION HANDLER] Session:')
             this.log(session)
             this.log('[OPEN SESSION HANDLER] ' + 'Session:', event.key + ' Player:', session[0].Player.title)
+            this.log('[OPEN SESSION HANDLER] ' + 'Session:', event.key + ' Address:', session[0].Player.address)
             this.log('[OPEN SESSION HANDLER] ' + 'Session:', event.key + ' Title:', session[0].title)
             this.log('[OPEN SESSION HANDLER] ' + 'Session:', event.key + ' Type:', session[0].type)
             this.log('[OPEN SESSION HANDLER] ' + 'Session:', event.key + ' User:', session[0].User.title)
@@ -236,7 +237,8 @@ class App extends Homey.App {
                 'player': session[0].Player.title,
                 'title': session[0].title,
                 'type': session[0].type,
-                'user': session[0].User.title
+                'user': session[0].User.title,
+                'address': session[0].Player.address
             }
             this.log('[OPEN SESSION HANDLER] Active player sessions:')
             this.log(this.playerSessions)
@@ -245,11 +247,13 @@ class App extends Homey.App {
             if (this.playerStates[session[0].Player.title] != event.state) {
                 this.log('[OPEN SESSION HANDLER] State changed? YES')
                 this.playerStates[session[0].Player.title] = event.state
+                this.playerStates[session[0].Player.address] = event.state
                 // Trigger flow card
                 this.triggerFlow(event.state, this.playerSessions[event.key])
             } else {
                 this.log('[OPEN SESSION HANDLER] State changed? NO')
                 this.playerStates[session[0].Player.title] = event.state
+                this.playerStates[session[0].Player.address] = event.state
             }
         }, function(err) {
             this.error('[OPEN SESSION HANDLER, ERROR] Could not connect to server:', err)
@@ -264,6 +268,7 @@ class App extends Homey.App {
             this.log('[STOPPED SESSION HANDLER]', this.playerSessions[event.key].title, 'stopped playing - cleaning sessions / states for', this.playerSessions[event.key].player)
                 // Delete state and session
             delete this.playerStates[this.playerSessions[event.key].player]
+            delete this.playerStates[this.playerSessions[event.key].address]
             delete this.playerSessions[event.key]
         } else {
             this.log('[STOPPED SESSION HANDLER, ERROR] No valid session found for stopped event:')

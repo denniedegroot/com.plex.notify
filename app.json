@@ -70,6 +70,15 @@
                 "example": {
                     "en": "Rasplex"
                 }
+            }, {
+                "name": "address",
+                "type": "string",
+                "title": {
+                    "en": "Ip address"
+                },
+                "example": {
+                    "en": "192.168.1.1"
+                }
             }]
         }, {
             "id": "stopped",
@@ -114,6 +123,15 @@
                 },
                 "example": {
                     "en": "Rasplex"
+                }
+            }, {
+                "name": "address",
+                "type": "string",
+                "title": {
+                    "en": "Ip address"
+                },
+                "example": {
+                    "en": "192.168.1.1"
                 }
             }]
         }, {
@@ -160,6 +178,15 @@
                 "example": {
                     "en": "Rasplex"
                 }
+            }, {
+                "name": "address",
+                "type": "string",
+                "title": {
+                    "en": "Ip address"
+                },
+                "example": {
+                    "en": "192.168.1.1"
+                }
             }]
         }],
         "conditions": [{
@@ -174,7 +201,7 @@
                 "name": "player",
                 "type": "text",
                 "placeholder": {
-                    "en": "Player name"
+                    "en": "Player name or ip address"
                 }
             }]
         }, {
@@ -189,7 +216,7 @@
                 "name": "player",
                 "type": "text",
                 "placeholder": {
-                    "en": "Player name"
+                    "en": "Player name or ip address"
                 }
             }]
         }]
