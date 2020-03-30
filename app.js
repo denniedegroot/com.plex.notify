@@ -135,6 +135,10 @@ class App extends Homey.App {
                     'product': 'Plex Notify',
                     'platform': 'Plex Home Theater',
                     'device': 'Linux'
+
+                },
+                'requestOptions': {
+                    'rejectUnauthorized': false
                 }
             });
 
