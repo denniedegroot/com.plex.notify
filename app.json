@@ -1,13 +1,13 @@
 {
     "id": "com.plex.notify",
-    "version": "1.0.5",
-    "compatibility": "",
+    "version": "1.1.0",
+    "compatibility": ">=3.0.0",
     "sdk": 2,
     "name": {
         "en": "Plex Notify"
     },
     "description": {
-        "en": "Trigger homey with Plex media players"
+        "en": "Trigger Homey with Plex media players"
     },
     "category": "video",
     "images": {
@@ -15,16 +15,20 @@
         "small": "assets/images/small.png"
     },
     "author": {
-        "name": "Mark Swift",
-        "email": "markaswift@gmail.com"
+        "name": "Dennie de Groot",
+        "email": "mail@denniedegroot.nl",
+        "website": "https://denniedegroot.nl"
     },
     "contributors": {
         "developers": [{
-            "name": "Dennie de Groot",
-            "email": "mail@denniedegroot.nl",
-            "website": "https://denniedegroot.nl"
+            "name": "Mark Swift",
+            "email": "markaswift@gmail.com"
         }]
     },
+        "bugs": {
+        "url": "https://github.com/denniedegroot/com.plex.notify/issues"
+    },
+    "source": "https://github.com/denniedegroot/com.plex.notify",
     "flow": {
         "triggers": [{
             "id": "playing",
